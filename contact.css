@@ -1,0 +1,362 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #d2e7d4;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0 12px;
+      }
+      nav {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+      }
+      .logo {
+        width: 93px;
+        height: 53px;
+        background-color: #6fc956;
+        border: 3px solid #ffffff;
+        outline: 5px solid #6fc956;
+      }
+      nav .logo > div:first-child {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      nav .logo > div .sq1 {
+        width: 13%;
+        height: 100%;
+        background-color: #65b94e;
+      }
+      nav .logo > div:last-child {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: center;
+        top: -47px;
+      }
+      nav > .logo > div:last-child > .line:nth-child(2) {
+        padding: 13px;
+        border: 3px solid white;
+        border-radius: 50%;
+        position: relative;
+      }
+      nav > .logo > div:last-child > .line:nth-child(2)::before {
+        content: "";
+        top: -11px;
+        left: 11px;
+        width: 3px;
+        height: 3rem;
+        position: absolute;
+        background-color: white;
+      }
+      nav > .logo > div:last-child > .line:nth-child(3) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-left: 3px solid white;
+      }
+      nav > .logo > div:last-child > .line:nth-child(1) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-right: 3px solid white;
+      }
+
+      /* New burger menu */
+      .menu-icon-wrapper {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .menu-icon {
+        position: relative;
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: background-color 0.2s ease-in;
+      }
+
+      .menu-icon::before {
+        position: absolute;
+        left: 0;
+        top: -10px;
+        content: "";
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+      }
+
+      .menu-icon::after {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        content: "";
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+      }
+
+      .menu-icon.menu-icon-active {
+        background-color: transparent;
+      }
+
+      .menu-icon.menu-icon-active::before {
+        transform: rotate(45deg);
+        top: 0;
+        transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+      }
+
+      .menu-icon.menu-icon-active::after {
+        transform: rotate(-45deg);
+        top: 0;
+        transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+      }
+
+      ul {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+      }
+      ul li a {
+        text-decoration: none;
+        color: #266734;
+      }
+      ul li {
+        margin-left: 21px;
+        padding: 10px;
+        font-weight: 800;
+        text-align: center;
+        font-size: 27px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: "Space Mono", sans-serif;
+        position: relative;
+      }
+      ul li::after {
+        content: "";
+        position: absolute;
+        height: 5px;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        background-color: #14b3299d;
+        transition: width 0.2s;
+      }
+      ul li:hover::after {
+        width: 100%;
+      }
+
+      /* Hide burger icon on desktop */
+      @media (min-width: 961px) {
+        .menu-icon-wrapper {
+          display: none; /* Hide the burger icon on desktop */
+        }
+
+        ul {
+          display: flex !important;
+        }
+      }
+
+      @media (max-width: 960px) {
+        nav {
+          align-items: center;
+          gap: 20px;
+        }
+        nav > .logo {
+          width: 100%;
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 80px;
+          left: 0;
+          width: 100%;
+          gap: 0;
+          color: white;
+          background-color: #6fc956;
+          z-index: 999;
+          height: 0;
+          overflow: hidden;
+          transition: height 0.5s ease;
+        }
+        ul.active {
+          height: 180px;
+        }
+
+        ul li {
+          color: white;
+          border-radius: 0;
+          background-color: #6fc956;
+          margin-left: 0;
+        }
+        ul li:hover {
+          background-color: #65b94e;
+        }
+        ul li::after {
+          display: none;
+        }
+      }
+
+      .middle-section {
+        height: 100vh;
+      }
+
+      /* Middle Section (Contact Form) */
+      .contact-section {
+        margin: 103px auto;
+        padding: 20px;
+        height: 90vh;
+      }
+      .contact-section h1 {
+        color: #4d6b54;
+        font-size: 36px;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-family: "Archivo Black", sans-serif;
+        margin-bottom: 20px;
+      }
+
+      /* Contact Form */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: white;
+        padding: 20px;
+        border: 2px solid #266734;
+        border-radius: 8px;
+      }
+
+      .contact-form label {
+        font-family: "Space Mono", sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #266734;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        height: 150px;
+      }
+
+      .contact-form button {
+        background-color: #266734;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .contact-form button:hover {
+        background-color: #3a804e;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #266734;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        width: 100%;
+      }
+      footer .logo {
+        width: 93px;
+        height: 53px;
+        background-color: #6fc956;
+        border: 3px solid #ffffff;
+        outline: 5px solid #6fc956;
+        margin: 0 auto 15px auto;
+      }
+      footer .logo > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+      }
+      footer .logo > div .sq1 {
+        width: 13%;
+        height: 100%;
+        background-color: #65b94e;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(2) {
+        padding: 13px;
+        border: 3px solid white;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(2)::before {
+        content: "";
+        top: -11px;
+        left: 11px;
+        width: 3px;
+        height: 3rem;
+        position: absolute;
+        background-color: white;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(1) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-right: 3px solid white;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(3) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-left: 3px solid white;
+      }
+      footer .logo > div:last-child {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        top: -50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      footer p {
+        font-family: "Space Mono", sans-serif;
+        font-size: 14px;
+      }

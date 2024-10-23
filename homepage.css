@@ -1,0 +1,870 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #d2e7d4;
+        font-family: Arial, sans-serif;
+      }
+      /*Menu Section*/
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0 12px;
+      }
+
+      nav {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+      }
+      .logo {
+        width: 93px;
+        height: 53px;
+        background-color: #6fc956;
+        border: 3px solid #ffffff;
+        outline: 5px solid #6fc956;
+      }
+      nav .logo > div:first-child {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      nav .logo > div .sq1 {
+        width: 13%;
+        height: 100%;
+        background-color: #65b94e;
+      }
+      nav .logo > div:last-child {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: center;
+        top: -47px;
+      }
+      nav > .logo > div:last-child > .line:nth-child(2) {
+        padding: 13px;
+        border: 3px solid white;
+        border-radius: 50%;
+        position: relative;
+      }
+      nav > .logo > div:last-child > .line:nth-child(2)::before {
+        content: "";
+        top: -11px;
+        left: 11px;
+        width: 3px;
+        height: 3rem;
+        position: absolute;
+        background-color: white;
+      }
+      nav > .logo > div:last-child > .line:nth-child(3) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-left: 3px solid white;
+      }
+      nav > .logo > div:last-child > .line:nth-child(1) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-right: 3px solid white;
+      }
+
+      /* New burger menu */
+      .menu-icon-wrapper {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .menu-icon {
+        position: relative;
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: background-color 0.2s ease-in;
+      }
+
+      .menu-icon::before {
+        position: absolute;
+        left: 0;
+        top: -10px;
+        content: "";
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+      }
+
+      .menu-icon::after {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        content: "";
+        width: 30px;
+        height: 5px;
+        background-color: #136913;
+        transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+      }
+
+      .menu-icon.menu-icon-active {
+        background-color: transparent;
+      }
+
+      .menu-icon.menu-icon-active::before {
+        transform: rotate(45deg);
+        top: 0;
+        transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+      }
+
+      .menu-icon.menu-icon-active::after {
+        transform: rotate(-45deg);
+        top: 0;
+        transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+      }
+
+      ul {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+      }
+      ul li a {
+        text-decoration: none;
+        color: #266734;
+      }
+      ul li {
+        margin-left: 21px;
+        padding: 10px;
+        font-weight: 800;
+        text-align: center;
+        font-size: 27px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: "Space Mono", sans-serif;
+        position: relative;
+      }
+      ul li::after {
+        content: "";
+        position: absolute;
+        height: 5px;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        background-color: #14b3299d;
+        transition: width 0.2s;
+      }
+      ul li:hover::after {
+        width: 100%;
+      }
+
+      /* Hide burger icon on desktop */
+      @media (min-width: 961px) {
+        .menu-icon-wrapper {
+          display: none; /* Hide the burger icon on desktop */
+        }
+
+        ul {
+          display: flex !important;
+        }
+      }
+
+      @media (max-width: 960px) {
+        nav {
+          align-items: center;
+          gap: 20px;
+        }
+        nav > .logo {
+          width: 100%;
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 80px;
+          left: 0;
+          width: 100%;
+          gap: 0;
+          color: white;
+          background-color: #6fc956;
+          z-index: 999;
+          height: 0;
+          overflow: hidden;
+          transition: height 0.5s ease;
+        }
+        ul.active {
+          height: 180px;
+        }
+
+        ul li {
+          color: white;
+          border-radius: 0;
+          background-color: #6fc956;
+          margin-left: 0;
+        }
+        ul li:hover {
+          background-color: #65b94e;
+        }
+        ul li::after {
+          display: none;
+        }
+      }
+
+      /* Middle Section Redesign */
+      .middle-section {
+        min-height: 100vh;
+        padding: 40px 0;
+      }
+
+      /*STOP HERE*/
+      /* Responsive for tablet and mobile */
+      @media (max-width: 1076px) {
+      }
+
+      @media (max-width: 768px) {
+      }
+      /*Menu Section*/
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0 12px;
+      }
+      /* Latest News and Live Matches Grid Layout */
+      .latest-news {
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Two-thirds for news, one-third for live matches */
+        margin-top: 20px;
+        margin: 20px auto;
+        background-color: #f7f7f7;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 767px) {
+        .news-grid {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 20px !important;
+        }
+        .news-item-card {
+          flex-direction: column;
+          display: flex;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+          padding: 15px;
+          gap: 15px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .news-card-image {
+          width: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+          max-height: 300px;
+        }
+      }
+
+
+      @media (max-width: 639px) {
+        .news-list > .news-list-item > .news-content >p{
+          display: none;
+        }
+
+        .news-list > .news-list-item > .news-content >h3 {
+          font-size: 72%;
+        }
+
+        .news-list > .news-list-item {
+          height: 90px;
+      }
+      .news-list-image {
+        width: 120px;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+      }
+
+      /* Left Column - News Section (Main) */
+      main section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      section h2 {
+        font-size: 36px;
+        font-family: "Archivo Black", sans-serif;
+        color: #4d6b54;
+      }
+
+      .news-feature-item {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+      }
+
+    
+
+      /* Styling the featured news card */
+      .feature-news {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        border: none;
+      }
+
+      .news-feature-image {
+        border-radius: 10px;
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+      }
+
+      .news-details {
+        padding: 15px;
+      }
+
+      .news-title {
+        font-size: 20px;
+        font-family: "Archivo Black", sans-serif;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+      }
+
+      .news-excerpt {
+        color: #555;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        /* Ensure cards are aligned and of equal height */
+        align-items: stretch;
+      }
+
+      .news-item-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        /* Ensure all cards have the same height */
+        height: 100%;
+      }
+
+      .news-card-image {
+        width: 100%;
+        height: 200px; /* Set a fixed height to ensure uniformity */
+        object-fit: cover;
+        flex-shrink: 0; /* Prevent image from shrinking */
+      }
+
+      .news-card-details {
+        padding: 15px;
+        flex-grow: 1; /* This ensures the text content takes the remaining space evenly */
+      }
+
+      .news-card-details .author {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 10px;
+      }
+
+      .news-card-details .news-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .news-card-details .news-excerpt {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.4;
+      }
+
+      /* News List Styling */
+      .news-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .news-list-item{
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        gap: 15px;
+      }
+      
+
+      .news-list-image {
+        width: 120px;
+        /*height: 120px;*/
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .news-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #1a1a1a;
+      }
+
+      .news-excerpt {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 1079px) {
+        .latest-news {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        aside {
+          margin-left: 0 !important;
+          width: 100% !important;
+        }
+      }
+      /* Right Column - Live Matches (Aside) */
+      aside {
+        width: 330px;
+        margin-left: 20px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+      }
+      .aside-cards.live-match {
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .live-matches-section h2 {
+        font-size: 24px;
+        font-family: "Archivo Black", sans-serif;
+        margin-bottom: 15px;
+        color: #4d6b54;
+      }
+
+      .live-matches-section .match {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .live-matches-section .match:last-child {
+        border-bottom: none;
+      }
+
+      .live-matches-section .match .team {
+        display: flex;
+        align-items: center;
+      }
+
+      .live-matches-section .match .team-logo {
+        width: 30px;
+        margin-right: 10px;
+      }
+
+      .live-matches-section .match .team-name {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .live-matches-section .match .score {
+        font-size: 18px;
+        color: #4d6b54;
+      }
+
+      /* Schedule League with Table */
+      .schedule-league {
+        background-color: #f9fafb; /* Light mode background */
+        border-radius: 10px; /* Rounded corners */
+        border: 1px solid #e5e7eb; /* Light border */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%; /* Make sure it takes the full width */
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+
+      .schedule-league table {
+        width: 100%; /* Table should fill the parent width */
+        border-collapse: collapse;
+        border-color: inherit;
+        font-family: "Space Mono", sans-serif;
+        border-radius: 10px; /* Apply border-radius */
+        overflow: hidden; /* Ensure the border-radius applies to the entire table */
+        border: 1px solid #e5e7eb; /* Light border for table */
+      }
+
+      .schedule-league h3 {
+        font-size: 20px;
+        font-family: "Archivo Black", sans-serif;
+        color: #374151;
+        margin-bottom: 10px;
+      }
+
+      .schedule-league th,
+      .schedule-league td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb; /* Light border for table rows */
+      }
+
+      .schedule-league table thead {
+        background-color: #374151;
+        color: #f3f4f6;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      .schedule-league td {
+        font-size: 14px;
+        color: #374151; /* Darker text for table content */
+      }
+
+      .schedule-league .team-logo {
+        width: 24px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .schedule-league .team-name {
+        display: flex;
+        align-items: center;
+      }
+
+      .schedule-league tbody tr:nth-child(2n + 1) {
+        background-color: #f3f4f6; /* Light highlight row */
+      }
+
+      .schedule-league td.score {
+        text-align: center;
+        font-weight: bold;
+        color: #10b981; /* Green for score */
+      }
+
+      .schedule-league td.rank {
+        text-align: center;
+        color: #3b82f6; /* Blue for rank */
+        font-weight: bold;
+      }
+
+      /* Responsive Adjustments */
+
+      /*Dropdown*/
+      .select-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .custom-select {
+        position: relative;
+        width: 100%;
+      }
+
+      .simple-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-family: "Space Mono", sans-serif;
+        border-radius: 5px;
+        border: 1px solid #e5e7eb;
+        background-color: #fff;
+        color: #333;
+        appearance: none;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .simple-select:focus {
+        border-color: #4d6b54;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+      }
+
+      /* Chevron down icon */
+      .custom-select i {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 18px;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+      }
+
+      /* Rotate the chevron when dropdown is open */
+      .simple-select:focus + i,
+      .simple-select:active + i {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .schedule-league table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: "Space Mono", sans-serif;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+      }
+
+      .schedule-league th,
+      .schedule-league td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .schedule-league thead {
+        background-color: #374151;
+        color: #f3f4f6;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      .schedule-league td {
+        font-size: 14px;
+        color: #374151;
+      }
+
+      .schedule-league .team-logo {
+        width: 24px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .schedule-league .team-name {
+        display: flex;
+        align-items: center;
+      }
+
+      .schedule-league tbody tr:nth-child(2n + 1) {
+        background-color: #f3f4f6;
+      }
+
+      .schedule-league td.score {
+        text-align: center;
+        font-weight: bold;
+        color: #10b981;
+      }
+
+      .schedule-league td.rank {
+        text-align: center;
+        color: #3b82f6;
+        font-weight: bold;
+      }
+
+      /* Results Card Styling */
+      .results-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px; /* Add space below card */
+      }
+
+      .results-card h3 {
+        font-size: 24px;
+        font-family: "Archivo Black", sans-serif;
+        margin-bottom: 15px;
+        color: #4d6b54;
+      }
+
+      /* Match Day Styling */
+      .match-day {
+        margin-bottom: 15px;
+      }
+
+      .match-date {
+        background-color: #374151;
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 16px;
+        font-family: "Space Mono", sans-serif;
+      }
+
+      .match-tcard {
+        display: flex;
+        align-items: center;
+        background-color: #f3f4f6;
+        padding: 8px 10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Add a light shadow inside */
+        margin-top: -4px; /* Adjust to make it blend seamlessly with the date */
+      }
+
+      /* Team and Time Layout */
+      .time {
+        font-size: 14px;
+        color: #333;
+        width: 50px;
+      }
+
+      .teams {
+        display: flex;
+        gap: 0.3rem;
+        flex-direction: column;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.375rem;
+        padding-top: 0.375rem;
+      }
+
+      .team {
+        display: flex;
+        align-items: center;
+      }
+
+      .team-logo {
+        width: 21px;
+        margin-right: 8px;
+      }
+
+      .team span {
+        font-size: 14px;
+        font-family: "Space Mono", sans-serif;
+        color: #333;
+      }
+
+      /* Link to View Full Fixtures */
+      .view-all-fixtures {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #1d4ed8;
+        text-decoration: none;
+        font-family: "Space Mono", sans-serif;
+      }
+
+      .view-all-fixtures:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #266734;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        width: 100%;
+      }
+      footer .logo {
+        width: 93px;
+        height: 53px;
+        background-color: #6fc956;
+        border: 3px solid #ffffff;
+        outline: 5px solid #6fc956;
+        margin: 0 auto 15px auto;
+      }
+      footer .logo > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+      }
+      footer .logo > div .sq1 {
+        width: 13%;
+        height: 100%;
+        background-color: #65b94e;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(2) {
+        padding: 13px;
+        border: 3px solid white;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(2)::before {
+        content: "";
+        top: -11px;
+        left: 11px;
+        width: 3px;
+        height: 3rem;
+        position: absolute;
+        background-color: white;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(1) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-right: 3px solid white;
+      }
+
+      footer > .logo > div:last-child > .line:nth-child(3) {
+        height: 30px;
+        padding: 6px;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        border-left: 3px solid white;
+      }
+      footer .logo > div:last-child {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        top: -50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      footer p {
+        font-family: "Space Mono", sans-serif;
+        font-size: 14px;
+      }
+
+      .no-match {
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        color: #ff0000; /* You can change the color as per your theme */
+      }

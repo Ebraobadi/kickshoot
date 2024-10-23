@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="live-match.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kick Live Soccer</title>
+  </head>
+  <body>
+    <div class="menu-section">
+      <div class="container">
+        <nav>
+          <a href="homepage.html" class="logo">
+            <div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+            </div>
+            <div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+          </a>
+          <!-- New Burger Menu -->
+          <div class="menu-icon-wrapper">
+            <div class="menu-icon"></div>
+          </div>
+          <ul id="menu">
+            <li><a href="live-match.html">Live Matches</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="middle-section">
+      <div class="container">
+        <section>
+          <!-- Live Match Buttons and Title -->
+          <div class="top">
+            <h1>Live Matches & Scores</h1>
+            <div class="date">
+              <a href="#" class="card card-option"> Today </a>
+              <a href="#" class="card card-option"> Tomorrow </a>
+              <a href="#" class="card card-option"> Yesterday </a>
+            </div>
+          </div>
+          <!-- Live Matches Container -->
+          <div class="bottom">
+            <div class="match-container"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+      <div class="logo">
+        <div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+        </div>
+        <div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <p>&copy; 2024 Kick Live Soccer. All rights reserved.</p>
+    </footer>
+    <script>
+      // Toggle burger menu animation
+      document.querySelector(".menu-icon-wrapper").onclick = function () {
+        const menuIcon = document.querySelector(".menu-icon");
+        menuIcon.classList.toggle("menu-icon-active");
+        document.getElementById("menu").classList.toggle("active");
+      };
+
+      // Add active class for selected button
+      const buttons = document.querySelectorAll(".card-option");
+      buttons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+    <script src="live-match.js"></script>
+  </body>
+</html>

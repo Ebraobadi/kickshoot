@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="contact.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kick Live Soccer - Contact</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("uOkQzBG9D-DtrI5M0"); // Replace with your EmailJS user ID
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="menu-section">
+      <div class="container">
+        <nav>
+          <a href="homepage.html" class="logo">
+            <div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+              <div class="sq1"></div>
+            </div>
+            <div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+          </a>
+          <!-- New Burger Menu -->
+          <div class="menu-icon-wrapper">
+            <div class="menu-icon"></div>
+          </div>
+          <ul id="menu">
+            <li><a href="live-match.html">Live Matches</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="middle-section">
+      <div class="container">
+        <!-- Contact Section -->
+        <section class="contact-section">
+          <h1>Contact Us</h1>
+          <form class="contact-form" id="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+          <!-- Email Contact Info -->
+          <p id="contact-email"></p>
+        </section>
+      </div>
+    </div>
+    <!-- New Footer -->
+    <footer>
+      <div class="logo">
+        <div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+          <div class="sq1"></div>
+        </div>
+        <div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <p>&copy; 2024 Kick Live Soccer. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Toggle burger menu animation
+      document.querySelector(".menu-icon-wrapper").onclick = function () {
+        const menuIcon = document.querySelector(".menu-icon");
+        menuIcon.classList.toggle("menu-icon-active");
+        document.getElementById("menu").classList.toggle("active");
+      };
+
+      // Function to send email via EmailJS
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Send the form data using EmailJS
+          emailjs
+            .sendForm("service_sc2myt8", "template_0bz10hn", "#contact-form")
+            .then(
+              function (response) {
+                alert("Message sent successfully!");
+              },
+              function (error) {
+                alert("Failed to send message, please try again later.");
+              }
+            );
+        });
+    </script>
+  </body>
+</html>
