@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   ];
 
   let updateInterval;
+  let selectedDay = 'today'; // Default to 'today'
 
   // Automatically fetch matches for today when the page loads
   const todayDate = getFormattedDate(new Date());
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   todayBtn.addEventListener('click', async (event) => {
     event.preventDefault(); // Prevent default anchor behavior
     clearInterval(updateInterval);
+    selectedDay = 'today'; // Set the selected day to 'today'
     const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${todayDate}`;
     await fetchMatches(url);
   });
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   tomorrowBtn.addEventListener('click', async (event) => {
     event.preventDefault(); // Prevent default anchor behavior
     clearInterval(updateInterval);
+    selectedDay = 'tomorrow'; // Set the selected day to 'tomorrow'
     const tomorrowDate = getFormattedDate(new Date(new Date().setDate(new Date().getDate() + 1)));
     const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${tomorrowDate}`;
     await fetchMatches(url);
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   yesterdayBtn.addEventListener('click', async (event) => {
     event.preventDefault(); // Prevent default anchor behavior
     clearInterval(updateInterval);
+    selectedDay = 'yesterday'; // Set the selected day to 'yesterday'
     const yesterdayDate = getFormattedDate(new Date(new Date().setDate(new Date().getDate() - 1)));
     const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${yesterdayDate}`;
     await fetchMatches(url);
@@ -96,7 +100,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    matches.forEach(match => {
+    // Loop through matches and assign a unique number to each match-container
+    matches.forEach((match, index) => {
       const matchStatus = match.fixture.status.short;
       const isLive = matchStatus === '1H' || matchStatus === '2H' || matchStatus === 'LIVE';
       const isNotStarted = matchStatus === 'NS';
@@ -106,8 +111,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       const currentHomeGoals = match.goals.home || 0;
       const currentAwayGoals = match.goals.away || 0;
 
+      // Assign a unique match number for each card
+      const matchNumber = index + 1; // Start counting from 1
+
       const matchCard = `
-        <div class="match-container" data-home-team="${match.teams.home.name}" data-home-logo="${match.teams.home.logo}" data-away-team="${match.teams.away.name}" data-away-logo="${match.teams.away.logo}">
+        <div class="match-container" data-match-number="${matchNumber}" data-home-team="${match.teams.home.name}" data-home-logo="${match.teams.home.logo}" data-away-team="${match.teams.away.name}" data-away-logo="${match.teams.away.logo}">
           <div class="img-text">
             <div class="img-responsive">
               <img src="${match.league.logo}" alt="${match.league.name}" />
@@ -152,13 +160,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const homeLogo = matchContainer.getAttribute('data-home-logo');
         const awayTeam = matchContainer.getAttribute('data-away-team');
         const awayLogo = matchContainer.getAttribute('data-away-logo');
+        const matchNumber = matchContainer.getAttribute('data-match-number'); // Get match number
 
-        // Store the selected match data in localStorage
+        // Store the selected match data, including the unique match number and selected day, in localStorage
         const matchData = {
           homeTeam,
           homeLogo,
           awayTeam,
-          awayLogo
+          awayLogo,
+          matchNumber,
+          selectedDay // Store the day (today, tomorrow, or yesterday)
         };
 
         console.log("Storing data in localStorage:", matchData); // Debugging log
