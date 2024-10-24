@@ -221,15 +221,15 @@ ul li:hover::after {
 
 /*Middle Section (Live Matches)*/
 .middle-section {
-  height: 100vh;
-  background-color: #d2e7d4;
+  min-height: 100vh;
+    padding: 40px 0;
 }
 section {
   background-color: #fff;
-  padding: 40px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 /* Watch Section code */
@@ -239,7 +239,26 @@ section {
   font-weight: 800;
   text-transform: uppercase;
   font-family: "Archivo Black", sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+
+.watch-section > .arb,
+.watch-section > .eng {
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  color: #4d6b54;
+  background-color: #d2e7d4;
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: "Archivo Black", sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 .team-logo {
   width: 70px;
@@ -262,6 +281,7 @@ iframe {
   margin-top: 12px;
   border-radius: 8px;
   background: #eceef2;
+  
 }
 .back-button {
   margin-top: 20px;
@@ -578,7 +598,9 @@ footer p {
 /* Specific adjustments for very small screens (e.g., smartphones) */
 @media (max-width: 640px) {
   /* Reduce text sizes */
-  .watch-section > h1 {
+  .watch-section > h1,
+  .watch-section > .arb,
+  .watch-section> .eng {
     font-size: 28px; /* Make header smaller */
   }
 
