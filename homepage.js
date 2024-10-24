@@ -214,3 +214,108 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Load the default league (Premier League) on page load
   handleLeagueChange(39); // Premier League ID is 39
 });
+
+
+
+
+
+
+
+
+
+
+document.getElementById('submission-form').addEventListener('submit', function(event) {
+  event.preventDefault();  // Prevents the form from submitting normally
+
+  const title = document.getElementById('title').value;
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const article = document.getElementById('article').value;
+  const fileInput = document.getElementById('file');
+  const file = fileInput.files[0];  // Get the selected file
+  let imageURL = '';
+
+  // First, check how many articles this email has submitted
+  db.collection('articles').where('email', '==', email).get().then(snapshot => {
+    const submissionCount = snapshot.size;  // Get the number of articles submitted by this email
+
+    // If the user has submitted fewer than 2 articles, allow the submission
+    if (submissionCount < 2) {
+      if (file) {
+        // Upload image to Firebase Storage
+        const fileRef = storageRef.child('images/' + file.name);
+        fileRef.put(file).then(snapshot => {
+          snapshot.ref.getDownloadURL().then(url => {
+            imageURL = url;
+            saveArticle(title, name, email, article, imageURL);  // Save the article with image URL
+          }).catch((error) => {
+            console.error('Error getting image URL:', error);
+          });
+        }).catch((error) => {
+          console.error('Error uploading image:', error);
+        });
+      } else {
+        // No image provided, just save the article
+        saveArticle(title, name, email, article, imageURL);
+      }
+    } else {
+      // Block the submission and inform the user
+      alert('You have already submitted 2 articles and cannot submit more.');
+    }
+  }).catch(error => {
+    console.error('Error checking submission count:', error);
+  });
+});
+
+function saveArticle(title, name, email, article, imageURL) {
+  // Save the article data to Firestore
+  db.collection('articles').add({
+    title: title,
+    name: name,
+    email: email,
+    article: article,
+    image: imageURL,  // Save the image URL (if uploaded)
+    date: new Date()
+  }).then(() => {
+    console.log('Article added successfully');
+    document.getElementById('submission-form').reset();  // Reset the form after submission
+    fetchAndDisplayArticles();  // Re-fetch and display all articles after submission
+  }).catch(error => {
+    console.error('Error adding document:', error);
+  });
+}
+
+// Function to display multiple articles
+function displayArticle(title, name, article, imageURL, date) {
+  const featureNews = document.querySelector('.feature-news');  // Select the container where articles will be displayed
+
+  const articleHTML = `
+    <div class="news-feature-item">
+      <img src="${imageURL ? imageURL : '/Kachkol/imgs/placeholder.jpg'}" alt="Feature Image" class="news-feature-image" />
+      <div class="news-details">
+        <h3 class="news-title">${title}</h3>
+        <p class="news-excerpt">${article.substring(0, 100)}...</p>
+        <p class="news-meta">By <strong>${name}</strong> | ${new Date(date).toDateString()}</p>
+      </div>
+    </div>
+  `;
+
+  featureNews.insertAdjacentHTML('beforeend', articleHTML);  // Append each article to the container
+}
+
+// Fetch and display all articles on page load
+document.addEventListener('DOMContentLoaded', fetchAndDisplayArticles);
+
+function fetchAndDisplayArticles() {
+  const featureNews = document.querySelector('.feature-news');
+  featureNews.innerHTML = '';  // Clear existing articles before fetching new ones
+
+  db.collection('articles').orderBy('date', 'desc').get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const articleData = doc.data();
+      displayArticle(articleData.title, articleData.name, articleData.article, articleData.image, articleData.date);
+    });
+  }).catch(error => {
+    console.error('Error fetching articles:', error);
+  });
+}
