@@ -498,21 +498,30 @@
 
       .live-matches-section .match .team {
         display: flex;
+        flex-direction: row-reverse;
+        gap: 3px;
+        align-items: center;
+      }
+
+      .live-matches-section .match .team:nth-child(3) {
+        display: flex;
+        flex-direction: row;
+        gap: 3px;
         align-items: center;
       }
 
       .live-matches-section .match .team-logo {
         width: 30px;
-        margin-right: 10px;
       }
 
       .live-matches-section .match .team-name {
-        font-size: 16px;
+        font-size: 13px;
         font-weight: bold;
       }
 
       .live-matches-section .match .score {
-        font-size: 18px;
+        font-size: 17px;
+        font-weight: 800;
         color: #4d6b54;
       }
 
@@ -763,7 +772,7 @@
 
       .team-logo {
         width: 21px;
-        margin-right: 8px;
+        
       }
 
       .team span {
@@ -868,3 +877,87 @@
         font-size: 18px;
         color: #ff0000; /* You can change the color as per your theme */
       }
+
+
+
+      /* Submission Form Section */
+.submission-form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 40px; /* Add some space before the next section */
+}
+
+.submission-form h2 {
+  font-size: 28px;
+  font-family: "Archivo Black", sans-serif;
+  color: #4d6b54;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  background-color: #f9fafb;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4d6b54;
+  outline: none;
+  box-shadow: 0 0 5px rgba(77, 107, 84, 0.5);
+}
+
+.form-group button.submit-btn {
+  background-color: #6fc956;
+  color: white;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-group button.submit-btn:hover {
+  background-color: #5cad4b;
+}
+
+/* Responsive Adjustments for Submission Form */
+@media (max-width: 768px) {
+  .submission-form {
+    padding: 20px;
+  }
+
+  .submission-form h2 {
+    font-size: 24px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px;
+  }
+
+  .form-group button.submit-btn {
+    font-size: 14px;
+  }
+}
