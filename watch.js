@@ -1,24 +1,33 @@
+
+// Toggle burger menu animation
+document.querySelector(".menu-icon-wrapper").onclick = function () {
+  const menuIcon = document.querySelector(".menu-icon");
+  menuIcon.classList.toggle("menu-icon-active");
+  document.getElementById("menu").classList.toggle("active");
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // Retrieve data from localStorage
   const selectedMatch = JSON.parse(localStorage.getItem('selectedMatch'));
 
-  // Mapping match numbers and days to iframe URLs
+  // Mapping match numbers and days to iframe URLs (each match number can have multiple URLs)
   const iframeUrls = {
     today: {
-      1: 'https://www.youtube.com/embed/ghNNQL0EdpQ?si=Gn0gr3iUr6N-EPsr',
-      2: 'https://koora.vip/share.php?ch=today_2',
-      3: 'https://koora.vip/share.php?ch=today_3',
-      11: 'https://aliezstream.pro/live/diemasport3_bulgaria.php',
+      1: ['https://www.youtube.com/embed/ghNNQL0EdpQ?si=Gn0gr3iUr6N-EPsr', 'https://koora.vip/share.php?ch=today_1'],
+      2: ['https://koora.vip/share.php?ch=today_2'],
+      3: ['https://koora.vip/share.php?ch=today_3'],
+      7: ['https://ok.ru/videoembed/7450023173763?','https://v5.sportsonline.si/channels/hd/hd11.php'],
+      9: ['https://freesportstime.com/total/soccer3.php'],
     },
     tomorrow: {
-      1: 'https://koora.vip/share.php?ch=tomorrow_1',
-      2: 'https://koora.vip/share.php?ch=tomorrow_2',
-      3: 'https://koora.vip/share.php?ch=tomorrow_3',
+      1: ['https://koora.vip/share.php?ch=tomorrow_1'],
+      2: ['https://koora.vip/share.php?ch=tomorrow_2'],
+      3: ['https://koora.vip/share.php?ch=tomorrow_3'],
     },
     yesterday: {
-      1: 'https://koora.vip/share.php?ch=yesterday_1',
-      2: 'https://koora.vip/share.php?ch=yesterday_2',
-      3: 'https://koora.vip/share.php?ch=yesterday_3',
+      1: ['https://koora.vip/share.php?ch=yesterday_1'],
+      2: ['https://koora.vip/share.php?ch=yesterday_2'],
+      3: ['https://koora.vip/share.php?ch=yesterday_3'],
     }
   };
 
@@ -27,12 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchNumber = selectedMatch.matchNumber; // Get the match number
     const selectedDay = selectedMatch.selectedDay; // Get the selected day (today, tomorrow, yesterday)
 
-    // Assign the correct iframe URL based on the match number and selected day
-    const iframeSrc = iframeUrls[selectedDay][matchNumber] || 'https://koora.vip/share.php?ch=default'; // Default iframe if no match is found
+    // Get the iframe URLs based on the match number and selected day
+    const iframeSrcs = iframeUrls[selectedDay][matchNumber] || ['https://koora.vip/share.php?ch=default']; // Default iframe if no match is found
 
-    // Insert the iframe into the watch section
-    const embedVideoSection = document.querySelector('.embedvideo iframe');
-    embedVideoSection.src = iframeSrc;
+    // Insert the first iframe into the English section
+    const englishEmbedVideoSection = document.querySelector('.embedvideo:nth-of-type(1) iframe');
+    englishEmbedVideoSection.src = iframeSrcs[0];
+
+    // If there's a second iframe, insert it into the Arabic section
+    if (iframeSrcs.length > 1) {
+      const arabicEmbedVideoSection = document.querySelector('.embedvideo:nth-of-type(2) iframe');
+      arabicEmbedVideoSection.src = iframeSrcs[1];
+    }
 
     // Create the new match card HTML
     const matchCardHTML = `
